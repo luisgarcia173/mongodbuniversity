@@ -15,7 +15,7 @@ MongoDB for Java Developers
 * Relational DB against Documents based
 * Schema design (Embedded or not), when use it: data access is the point
 
-***HomeWork:***
+*** HomeWork ***
 
 * show dbs
 * use m101
@@ -25,7 +25,11 @@ MongoDB for Java Developers
 
 ![Screen Shot 2017-03-24 at 2.21.36 AM.png](https://bitbucket.org/repo/x8AeKKA/images/3300363125-Screen%20Shot%202017-03-24%20at%202.21.36%20AM.png)
 
-================================================================================================
+*** Progress ***
+
+![Screen Shot 2017-03-24 at 2.24.33 AM.png](https://bitbucket.org/repo/x8AeKKA/images/4114133479-Screen%20Shot%202017-03-24%20at%202.24.33%20AM.png)
+
+===========================================================================================
 
 ### Week II ###
 
