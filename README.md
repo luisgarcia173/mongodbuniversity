@@ -8,3 +8,6 @@ MongoDB for Java Developers
 * Install on Mac
 * Json acceptable types: {object, array, string, number}
 * Bson (Binary Json)
+* Intro MongoDB crud operations
+* Intro SparkJava
+* Intro Freemarker
