@@ -33,4 +33,4 @@ MongoDB for Java Developers
 
 ### Week II ###
 
-*Coming Soon*
+* CRUD operations
