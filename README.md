@@ -37,4 +37,5 @@ MongoDB for Java Developers
 ```
 #!mongodb
 db.<collection>.insertOne({<fields>});
+db.<collection>.insertMany([{array>}]);
 ```
