@@ -34,3 +34,7 @@ MongoDB for Java Developers
 ### Week II ###
 
 * CRUD operations
+```
+#!mongodb
+db.<collection>.insertOne({<fields>});
+```
