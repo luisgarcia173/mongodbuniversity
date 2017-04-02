@@ -64,3 +64,9 @@ db.<collection>.find({<filter>}, {<columnToShow>: 1, <columnToHide>: 0}).pretty(
 #!mongodb
 db.<collection>.updateOne({<filter>}, { $set: {<modifyFields>}});
 ```
+
+*** HomeWork ***
+```
+#!mongodb
+db.grades.aggregate({'$group':{'_id':'$student_id', 'score':{'$min':'$score'}}}, {'$sort':{'_id':1}})
+```
