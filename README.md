@@ -33,9 +33,16 @@ MongoDB for Java Developers
 
 ### Week II ###
 
-* CRUD operations
+* Creating documents
 ```
 #!mongodb
 db.<collection>.insertOne({<fields>});
 db.<collection>.insertMany([{array>}]);
+```
+* ObjectId: _ _ _ _ | _ _ _ | _ _ | _ _ _
+ > Date | Mac Address | PID | Counter
+* Reading documents
+```
+#!mongodb
+db.<collection>.find({<filter>}).pretty();
 ```
