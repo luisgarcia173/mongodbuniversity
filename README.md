@@ -73,11 +73,10 @@ db.grades.aggregate({'$group':{'_id':'$student_id', 'score':{'$min':'$score'}}},
 
 *** Extras ***
 
-What query would we use in the Mongo shell to return all movies in the video.movieDetails collection that either won or were nominated for a best picture Oscar? You may assume that an award will appear in the oscars array only if the movie won or was nominated. You will probably want to create a little sample data for yourself in order to work this problem.
+1. What query would we use in the Mongo shell to return all movies in the video.movieDetails collection that either won or were nominated for a best picture Oscar? You may assume that an award will appear in the oscars array only if the movie won or was nominated. You will probably want to create a little sample data for yourself in order to work this problem.
 
 ```
 #!json
-#json
 "awards" : {
     "oscars" : [
         {"award": "bestAnimatedFeature", "result": "won"},
@@ -93,7 +92,28 @@ What query would we use in the Mongo shell to return all movies in the video.mov
 ```
 
 ```
-#!mongoshell
-#mongoshell
+#!mongodb
 db.movieDetails.find({"awards.oscars.award": "bestPicture"})
+```
+
+2. Write an update command that will remove the "tomato.consensus" field for all documents matching the following criteria:
+
+> The number of imdb votes is less than 10,000
+> The year for the movie is between 2010 and 2013 inclusive
+> The tomato.consensus field is null
+
+How many documents required an update to eliminate a "tomato.consensus" field?
+
+```
+#!mongodb
+db.movieDetails.updateMany({ year: {$gte: 2010, $lte: 2013},
+                             "imdb.votes": {$lt: 10000},
+                             $and: [{"tomato.consensus": {$exists: true} },
+                                    {"tomato.consensus": null} ] },
+                           { $unset: { "tomato.consensus": "" } });
+```
+Response:
+```
+#!json
+{ "acknowledged" : true, "matchedCount" : 13, "modifiedCount" : 13 }
 ```
