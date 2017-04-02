@@ -39,9 +39,9 @@ MongoDB for Java Developers
 db.<collection>.insertOne({<fields>});
 db.<collection>.insertMany([{array>}]);
 ```
-* ObjectId: _ _ _ _ | _ _ _ | _ _ | _ _ _ (12 Bytes, HEX String)
- > Date | Mac Address | PID | Counter
-* Reading documents
+> ObjectId: _ _ _ _ | _ _ _ | _ _ | _ _ _ (12 Bytes, HEX String)
+> Date | Mac Address | PID | Counter
+* Reading documents: [Doc Reference](https://docs.mongodb.com/manual/reference/method/db.collection.find/#db.collection.find)
 ```
 #!mongodb
 db.<collection>.find({<filter>}).pretty();
@@ -52,10 +52,10 @@ db.<collection>.find({<filter>}).count();
 #!mongodb
 db.<collection>.find({<filter>}, {<columnToShow>: 1, <columnToHide>: 0}).pretty();
 ```
-* Comparison Operators: [Comparison Query Operators](https://docs.mongodb.com/manual/reference/operator/query-comparison/)
-* Element Operators: [Query and Projection Operators] (https://docs.mongodb.com/manual/reference/operator/query/)
-* Regex: [$regex] (https://docs.mongodb.com/manual/reference/operator/query/regex/)
-* Updating documents: [Update field](https://docs.mongodb.com/manual/reference/method/db.collection.update/)
+* Comparison Operators: [Doc Reference](https://docs.mongodb.com/manual/reference/operator/query-comparison/)
+* Element Operators: [Doc Reference](https://docs.mongodb.com/manual/reference/operator/query/)
+* Regex: [Doc Reference](https://docs.mongodb.com/manual/reference/operator/query/regex/)
+* Updating documents: [Doc Reference](https://docs.mongodb.com/manual/reference/method/db.collection.update/)
 ```
 #!mongodb
 db.<collection>.updateOne({<filter>}, { $set: {<modifyFields>}});
