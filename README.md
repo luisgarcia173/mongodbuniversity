@@ -39,10 +39,17 @@ MongoDB for Java Developers
 db.<collection>.insertOne({<fields>});
 db.<collection>.insertMany([{array>}]);
 ```
-* ObjectId: _ _ _ _ | _ _ _ | _ _ | _ _ _
+* ObjectId: _ _ _ _ | _ _ _ | _ _ | _ _ _ (12 Bytes, HEX String)
  > Date | Mac Address | PID | Counter
 * Reading documents
 ```
 #!mongodb
 db.<collection>.find({<filter>}).pretty();
+db.<collection>.find({<filter>}).count();
 ```
+* Projection
+```
+#!mongodb
+db.<collection>.find({<filter>}, {<columnToShow>: 1, <columnToHide>: 0}).pretty();
+```
+* Comparison: [Comparison Query Operators](https://docs.mongodb.com/manual/reference/operator/query-comparison/)
