@@ -70,3 +70,30 @@ db.<collection>.updateOne({<filter>}, { $set: {<modifyFields>}});
 #!mongodb
 db.grades.aggregate({'$group':{'_id':'$student_id', 'score':{'$min':'$score'}}}, {'$sort':{'_id':1}})
 ```
+
+*** Extras ***
+
+What query would we use in the Mongo shell to return all movies in the video.movieDetails collection that either won or were nominated for a best picture Oscar? You may assume that an award will appear in the oscars array only if the movie won or was nominated. You will probably want to create a little sample data for yourself in order to work this problem.
+
+```
+#!json
+#json
+"awards" : {
+    "oscars" : [
+        {"award": "bestAnimatedFeature", "result": "won"},
+        {"award": "bestMusic", "result": "won"},
+        {"award": "bestPicture", "result": "nominated"},
+        {"award": "bestSoundEditing", "result": "nominated"},
+        {"award": "bestScreenplay", "result": "nominated"}
+    ],
+    "wins" : 56,
+    "nominations" : 86,
+    "text" : "Won 2 Oscars. Another 56 wins and 86 nominations."
+}
+```
+
+```
+#!mongoshell
+#mongoshell
+db.movieDetails.find({"awards.oscars.award": "bestPicture"})
+```
