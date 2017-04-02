@@ -2,7 +2,7 @@
 
 MongoDB for Java Developers
 
-### Week I ###
+### Week I (Introduction)###
 
 * MongoDB: Document Repository
 * Install on Mac
@@ -31,7 +31,7 @@ MongoDB for Java Developers
 
 ==========================================================================================
 
-### Week II ###
+### Week II (CRUD)###
 
 * Creating documents
 ```
