@@ -1,4 +1,4 @@
-package com.mongodb;
+package com.mongodb.web;
 
 import static spark.Spark.*;
 
