@@ -148,4 +148,9 @@ MongoDB allows:
 > Whenever the many is large
 
 Multikey Index:
-![Screen Shot 2017-04-06 at 8.12.41 PM.png](https://bitbucket.org/repo/x8AeKKA/images/196126887-Screen%20Shot%202017-04-06%20at%208.12.41%20PM.png)
+![Screen Shot 2017-04-06 at 8.12.41 PM.png](https://bitbucket.org/repo/x8AeKKA/images/2499469043-Screen%20Shot%202017-04-06%20at%208.12.41%20PM.png)
+
+Benefits of Embedding:
+
+* Improve read performance
+* One round trip to the DB
