@@ -121,3 +121,31 @@ Response:
 ==========================================================================================
 
 ### Week III (Schema Design)###
+
+MongoDB allows:
+
+* Rich documents
+* Pre join/ Embed data
+* No Mongo joins
+* No Mongo constraints
+* Atomic operations (No Transactions)
+* No declared schema
+
+**[Mongo Design] **Which data access pattern is not well supported by the blog schema?
+> Providing a table of contents by tag
+
+**[Without Constraints] **What does Living Without Constraints refer to?
+> Keeping your data consistent even though MongoDB lacks foreign key constraints
+
+**[Without Transactions] **Which of the following operations operate atomically within a single document?
+> Update, findAndModify, $addToSet(within an update), $push within an update
+
+**[One to One] **What's a good reason you might want to keep two documents that are related to each other one-to-one in separate collections?
+> To reduce the working set size of your application
+> Because the combined size of the document would be larger than 16MB
+
+**[One to Many] **When is it recommended to represent a one to many relationship in multiple collections?
+> Whenever the many is large
+
+Multikey Index:
+![Screen Shot 2017-04-06 at 8.12.41 PM.png](https://bitbucket.org/repo/x8AeKKA/images/196126887-Screen%20Shot%202017-04-06%20at%208.12.41%20PM.png)
