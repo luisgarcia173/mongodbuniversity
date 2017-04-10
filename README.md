@@ -148,9 +148,33 @@ MongoDB allows:
 > Whenever the many is large
 
 Multikey Index:
+
 ![Screen Shot 2017-04-06 at 8.12.41 PM.png](https://bitbucket.org/repo/x8AeKKA/images/2499469043-Screen%20Shot%202017-04-06%20at%208.12.41%20PM.png)
 
 Benefits of Embedding:
 
 * Improve read performance
 * One round trip to the DB
+
+Trees:
+
+* parent, ancestors, children
+
+**Example:** Given the following typical document for a e-commerce category hierarchy collection called categories
+
+```
+#!json
+
+{
+  _id: 34,
+  name: "Snorkeling",
+  parent_id: 12,
+  ancestors: [12, 35, 90]
+}
+```
+Which query will find all descendants of the snorkeling category?
+
+```
+#!mongodb
+db.categories.find({ancestors: 34})
+```
