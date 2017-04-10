@@ -176,5 +176,19 @@ Which query will find all descendants of the snorkeling category?
 
 ```
 #!mongodb
-db.categories.find({ancestors: 34})
+
+db.categories.find({ancestors: 34});
 ```
+
+**When to Denormalize**
+
+* 1 x 1: Embed
+* 1 x Many: Embed (from the many to one)
+* Many x Many: Link
+
+**What is an ODM?**
+
+* [Morphia](https://mongodb.github.io/morphia/)
+* Application -> ODM -> Driver -> Database
+* Transparently map your Java entities to MongoDB documents and back
+* Safe layer to protect application layer in order to changes on driver
