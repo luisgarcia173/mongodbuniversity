@@ -25,6 +25,7 @@ public class HelloWorldMongoDBSparkFreemarkerStyle {
 	
 	private static final Logger Log = Logger.getLogger("HelloWorldSparkFreemarkerStyle");
 	
+	@SuppressWarnings("resource")
 	public static void main(String[] args) {
 		
 		// Freemarker Configuration
