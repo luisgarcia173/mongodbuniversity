@@ -199,5 +199,17 @@ db.categories.find({ancestors: 34});
 
 ### Week IIII (Performance)###
 
-* **Store Engines: **The storage engine directly determines which of the following?
-> the data file format and format of indexes
+**Store Engines: **The storage engine directly determines which of the following?
+> the data file format and format of indexes.
+
+**MMAP: **
+
+* Collection
+* Level
+* Locking
+* In Place Updates
+* Power-of-two-sizes
+
+Which of the following statements about the MMAPv1 storage engine are true?
+> automatically allocates power-of-two-sized documents when new documents are inserted.
+> is built on top of the mmap system call taht maps files into memory.
