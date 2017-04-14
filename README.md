@@ -213,3 +213,25 @@ db.categories.find({ancestors: 34});
 Which of the following statements about the MMAPv1 storage engine are true?
 > automatically allocates power-of-two-sized documents when new documents are inserted.
 > is built on top of the mmap system call taht maps files into memory.
+
+**Wired Tiger: **
+
+* Document Level Concurrency
+* Compression: of date / of indexed
+* No Inplace Update
+
+**Indexes: **
+
+* Writes: Slower
+* Reads: Faster
+
+Which optimization will typically have the greatest impact on the performance of a database?
+> Adding appropriate indexes on large collections so that only a small percentage of queries need to scan the collection.
+
+**Creating Indexes**
+
+```
+#!mongodb
+
+db.<collection>.explain().find({<filter>});
+```
