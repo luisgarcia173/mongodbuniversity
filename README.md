@@ -244,9 +244,15 @@ Explain query execution with documents involved:
 db.<collection>.explain(true).find({<filter>});
 ```
 
-Create the index
+Creating a simple the index:
 ```
 #!mongodb
-# ordering: 1 ASC, -1 DESC
-db.<collection>.createIndex({<field>: <ordering>});
+*## order: 1 ASC, -1 DESC*
+db.<collection>.createIndex({<field>: <order>});
+```
+
+Creating a composed index:
+```
+#!mongodb
+db.<collection>.createIndex({<field>: <order>, <field>: <order>});
 ```
