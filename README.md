@@ -193,3 +193,11 @@ db.categories.find({ancestors: 34});
 * Transparently map your Java entities to MongoDB documents and back
 * Safe layer to protect application layer in order to changes on driver
 * [Morphia Reference Doc](http://mongodb.github.io/morphia/1.3/getting-started/)
+
+
+==========================================================================================
+
+### Week IIII (Performance)###
+
+* **Store Engines: **The storage engine directly determines which of the following?
+> the data file format and format of indexes
