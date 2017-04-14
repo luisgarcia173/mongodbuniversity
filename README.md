@@ -230,8 +230,23 @@ Which optimization will typically have the greatest impact on the performance of
 
 **Creating Indexes**
 
+Explain query execution:
 ```
 #!mongodb
 
 db.<collection>.explain().find({<filter>});
+```
+
+Explain query execution with documents involved:
+```
+#!mongodb
+
+db.<collection>.explain(true).find({<filter>});
+```
+
+Create the index
+```
+#!mongodb
+# ordering: 1 ASC, -1 DESC
+db.<collection>.createIndex({<field>: <ordering>});
 ```
