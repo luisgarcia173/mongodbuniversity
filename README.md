@@ -251,10 +251,22 @@ Creating a simple the index:
 db.<collection>.createIndex({<field>: <order>});
 ```
 
-Creating a composed index:
+Creating a composed index (Multikey):
 ```
 #!mongodb
 db.<collection>.createIndex({<field>: <order>, <field>: <order>});
+```
+
+Create Unique Index: (The column should exist in entire collection for all documents and must to exist only one value as a distinct column, because once a column not exists, its value is *NULL* than cannot be unique if more than one document hasn't the column)
+```
+#!mongodb
+db.<collection>.createIndex({<field>: <order>}, {"unique": true});
+```
+
+Sparse Index: (Allow you to create unique index for null columns)
+```
+#!mongodb
+db.<collection>.createIndex({<field>: <order>}, {"unique": true, "sparse": true});
 ```
 
 Get existing indexes:
@@ -268,3 +280,14 @@ Drop indexes:
 #!mongodb
 db.<collection>.dropIndex({<field>: 1});
 ```
+
+What are the advantages of a sparse index?
+> The index will be smaller than it would if it were not sparse.
+> You can gain greater flexibility with creating Unique indexes.
+
+Creating indexes foreground x background:
+```
+#!mongodb
+db.<collection>.createIndex({<field>: <order>}, {"background": true});
+```
+![Screen Shot 2017-04-15 at 7.32.44 PM.png](https://bitbucket.org/repo/x8AeKKA/images/3299325301-Screen%20Shot%202017-04-15%20at%207.32.44%20PM.png)
