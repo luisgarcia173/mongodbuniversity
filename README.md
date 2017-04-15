@@ -256,3 +256,15 @@ Creating a composed index:
 #!mongodb
 db.<collection>.createIndex({<field>: <order>, <field>: <order>});
 ```
+
+Get existing indexes:
+```
+#!mongodb
+db.<collection>.getIndexes();
+```
+
+Drop indexes:
+```
+#!mongodb
+db.<collection>.dropIndex({<field>: 1});
+```
