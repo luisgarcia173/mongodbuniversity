@@ -339,3 +339,6 @@ Creating 2D Sphere Index: (It's like the one above, but now means you want to us
 #!mongodb
 db.<collection>.createIndex({<field>: "2dsphere"});
 ```
+
+Now you can use:
+> $geometry and $maxDistance
