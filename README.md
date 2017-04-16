@@ -314,6 +314,7 @@ var exp = db.<collection>.explain("executionStats");
 exp.<instruction>();
 ```
 
+
 ** Geospatial Indexes **
 
 Creating a 2Dimensional index: (based on vertices of a location [X, Y])
@@ -328,8 +329,10 @@ Querying this index: (X,Y: are the lat/long)
 db.<collection>.find({<field>: {$near : [x,y]}});
 ```
 
+
 ** Geospatial Spherical **
 
+Draw Example:
 ![Screen Shot 2017-04-15 at 9.34.38 PM.png](https://bitbucket.org/repo/x8AeKKA/images/1380550004-Screen%20Shot%202017-04-15%20at%209.34.38%20PM.png)
 
 [GoogleMap - geoApi](http://geojson.org/geojson-spec.html)
