@@ -303,13 +303,13 @@ db.<collection>.explain().help();
 db.<collection>.explain().<instruction>();
 ```
 
-Verbosity:
+Verbosity: [Reference](https://docs.mongodb.com/manual/reference/method/cursor.explain/)
 * queryPlanner (*default*): Which indexes are being used.
 * executionStats (contains queryPlanner): How effective the indexes were, execution time, how many documents needed to read.
 * allPlansExecution (contains queryPlanner and executionStats): All the results above and all plans available.
 
 ```
 #!mongodb
-var exp = db.<collection>.explain({'executionStats'});
+var exp = db.<collection>.explain("executionStats");
 exp.<instruction>();
 ```
