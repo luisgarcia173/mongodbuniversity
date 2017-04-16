@@ -361,3 +361,27 @@ db.stores.find({
     }
 });
 ```
+
+
+** Text Indexes **
+
+Creating a text index, allows you to use LIKE operator by Index:
+> Assumes that you have a document {"key": "text1 text2 tex3"} 
+
+```
+#!mongodb
+db.<collection>.find({"key": "text1 text2 tex3"})
+```
+This is the only way you can find it without text index.
+
+Now, creating the properly index:
+```
+#!mongodb
+db.<collection>.createIndex({<field>: "text"});
+```
+
+And using a query by text index:
+```
+#!mongodb
+db.<collection>.find({$text: {$search: "<value>"}});
+```
