@@ -402,3 +402,10 @@ Follow the order:
 1. equality field: field on which queries will perform an equality test
 2. sort field: field on which queries will specify a sort
 3. range field: field on which queries perform a range test
+
+** Profilling **
+
+Using Profiler: [Reference](https://docs.mongodb.com/manual/tutorial/manage-the-database-profiler/)
+* 0: means OFF
+* 1: means you want to log slow queries
+* 2: means you want to log ALL queries
