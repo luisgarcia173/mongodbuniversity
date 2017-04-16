@@ -380,8 +380,14 @@ Now, creating the properly index:
 db.<collection>.createIndex({<field>: "text"});
 ```
 
-And using a query by text index:
+And using a query by text index: (value uses *OR* operator, if uses several words with spaces the db will try to find all matches possible)
 ```
 #!mongodb
 db.<collection>.find({$text: {$search: "<value>"}});
+```
+
+In order to try to search by text score:
+```
+#!mongodb
+db.<collection>.find({$text: {$search: "<value>"}}, {score: {$meta: "textScore"}}).sort({score: {$meta: "textScore" }});
 ```
