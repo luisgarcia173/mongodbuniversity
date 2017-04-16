@@ -408,4 +408,9 @@ Follow the order:
 Using Profiler: [Reference](https://docs.mongodb.com/manual/tutorial/manage-the-database-profiler/)
 * 0: means OFF
 * 1: means you want to log slow queries
-* 2: means you want to log ALL queries
+* 2: means you want to log ALL queries (*debugging*)
+
+```
+#!shellscript
+mongod --profile 1 --slowms 15
+```
