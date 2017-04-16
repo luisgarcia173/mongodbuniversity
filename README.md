@@ -391,3 +391,14 @@ In order to try to search by text score:
 #!mongodb
 db.<collection>.find({$text: {$search: "<value>"}}, {score: {$meta: "textScore"}}).sort({score: {$meta: "textScore" }});
 ```
+
+** Efficiency of Index use **
+
+In general, based on the preceding lecture, what is the primary factor that determines how efficiently an index can be used?
+> The selectivity of the index.
+
+In general, which of the following rules of thumb should you keep in mind when building compound indexes?
+Follow the order:
+1. equality field: field on which queries will perform an equality test
+2. sort field: field on which queries will specify a sort
+3. range field: field on which queries perform a range test
