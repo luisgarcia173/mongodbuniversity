@@ -342,3 +342,19 @@ db.<collection>.createIndex({<field>: "2dsphere"});
 
 Now you can use:
 > $geometry and $maxDistance
+
+Example: 
+```
+#!mongodb
+db.stores.find({
+    "loc": { 
+        $near: { 
+            $geometry: {
+                "type": "Point",
+                "coordinates": [-130, 39]
+            }, 
+            $maxDistance: 1000000
+        }
+    }
+});
+```
