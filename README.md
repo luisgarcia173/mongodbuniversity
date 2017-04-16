@@ -291,3 +291,25 @@ Creating indexes foreground x background:
 db.<collection>.createIndex({<field>: <order>}, {"background": true});
 ```
 ![Screen Shot 2017-04-15 at 7.32.44 PM.png](https://bitbucket.org/repo/x8AeKKA/images/3299325301-Screen%20Shot%202017-04-15%20at%207.32.44%20PM.png)
+
+**Explain**
+
+Using explain:
+```
+#!mongodb
+db.<collection>.explain().help();
+
+## instruction: find, remove, update, aggregate, ...
+db.<collection>.explain().<instruction>();
+```
+
+Verbosity:
+* queryPlanner (*default*): Which indexes are being used.
+* executionStats (contains queryPlanner): How effective the indexes were, execution time, how many documents needed to read.
+* allPlansExecution (contains queryPlanner and executionStats): All the results above and all plans available.
+
+```
+#!mongodb
+var exp = db.<collection>.explain({'executionStats'});
+exp.<instruction>();
+```
