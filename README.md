@@ -406,11 +406,19 @@ Follow the order:
 ** Profilling **
 
 Using Profiler: [Reference](https://docs.mongodb.com/manual/tutorial/manage-the-database-profiler/)
+
 * 0: means OFF
 * 1: means you want to log slow queries
 * 2: means you want to log ALL queries (*debugging*)
 
+MongoShell starting:
 ```
 #!shellscript
 mongod --profile 1 --slowms 15
+```
+
+Querying into SystemProfile:
+```
+#!mongodb
+db.system.profile.find( { "millis" : { $gt : 1000 } } ).sort({"ts": -1})
 ```
