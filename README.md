@@ -313,3 +313,17 @@ Verbosity: [Reference](https://docs.mongodb.com/manual/reference/method/cursor.e
 var exp = db.<collection>.explain("executionStats");
 exp.<instruction>();
 ```
+
+** Geospatial Indexes **
+
+Creating a 2Dimensional index: (based on vertices of a location [X, Y])
+```
+#!mongodb
+db.<collection>.createIndex({<field>: "2d", "type": 1});
+```
+
+Querying this index: (X,Y: are the lat/long)
+```
+#!mongodb
+db.<collection>.find({<field>: {$near : [x,y]}});
+```
