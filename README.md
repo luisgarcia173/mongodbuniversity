@@ -327,3 +327,15 @@ Querying this index: (X,Y: are the lat/long)
 #!mongodb
 db.<collection>.find({<field>: {$near : [x,y]}});
 ```
+
+** Geospatial Spherical **
+
+![Screen Shot 2017-04-15 at 9.34.38 PM.png](https://bitbucket.org/repo/x8AeKKA/images/1380550004-Screen%20Shot%202017-04-15%20at%209.34.38%20PM.png)
+
+[GoogleMap - geoApi](http://geojson.org/geojson-spec.html)
+
+Creating 2D Sphere Index: (It's like the one above, but now means you want to use a 3d point [lat/long] and place the point into a 2d view)
+```
+#!mongodb
+db.<collection>.createIndex({<field>: "2dsphere"});
+```
