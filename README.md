@@ -15,3 +15,4 @@ MongoDB for Java Developers
 * [Week III: Schema Design](Docs/README-III.md)
 * [Week IV: Performance](Docs/README-IV.md)
 * [Week V: Aggregation](Docs/README-V.md)
+* [Week VI: Application Engineering](Docs/README-VI.md)
