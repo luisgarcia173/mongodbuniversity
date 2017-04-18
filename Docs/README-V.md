@@ -72,6 +72,7 @@ db.products.aggregate([
 ** Aggregation Expressions **
 
 Group
+
 * $sum: sum keys
 * $avg: get the average of key values in aggregation stage
 * $min: get the minimum of key values in aggregation stage
