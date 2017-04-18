@@ -197,7 +197,7 @@ db.categories.find({ancestors: 34});
 
 ==========================================================================================
 
-### Week IIII (Performance)###
+### Week IV (Performance)###
 
 **Store Engines: **The storage engine directly determines which of the following?
 > the data file format and format of indexes.
@@ -422,3 +422,5 @@ Querying into SystemProfile:
 #!mongodb
 db.system.profile.find( { "millis" : { $gt : 1000 } } ).sort({"ts": -1})
 ```
+
+### Week V (Aggregation) ###
