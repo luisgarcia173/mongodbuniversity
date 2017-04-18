@@ -10,11 +10,11 @@ MongoDB for Java Developers
 
 ### Content ###
 
-* [Week I: Introduction](Docs/README-I.MD)
-* [Week II: Introduction](Docs/README-II.MD)
-* [Week III: Introduction](Docs/README-III.MD)
-* [Week IV: Introduction](Docs/README-IV.MD)
-* [Week V: Introduction](Docs/README-V.MD)
+* [Week I: Introduction](Docs/README-I.md)
+* [Week II: Introduction](Docs/README-II.md)
+* [Week III: Introduction](Docs/README-III.md)
+* [Week IV: Introduction](Docs/README-IV.md)
+* [Week V: Introduction](Docs/README-V.md)
 
 
 * MongoDB: Document Repository
