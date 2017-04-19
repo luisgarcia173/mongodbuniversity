@@ -81,3 +81,26 @@ Group:
 * $addToSet: build array fo the result as unique keys
 * $first: find the first in an aggregation query (sort)
 * $last: find the last in an aggregation query (sort)
+
+** $sum: to count or sum values **
+
+Example:
+```
+#!mongodb
+db.zips.aggregate([{"$group":{"_id":"$state", "population":{$sum:"$pop"}}}]);
+```
+
+** $avg: average of values **
+
+Example:
+```
+#!mongodb
+db.products.aggregate([
+	{$group: 
+		{
+			_id: {"category": "$category"}, 
+			avg_price: {$avg: "$price"}
+		}
+	}
+]);
+```
