@@ -82,17 +82,15 @@ Group:
 * $first: find the first in an aggregation query (sort)
 * $last: find the last in an aggregation query (sort)
 
-** $sum: to count or sum values **
+** $sum: ** to count or sum values
 
-Example:
 ```
 #!mongodb
 db.zips.aggregate([{"$group":{"_id":"$state", "population":{$sum:"$pop"}}}]);
 ```
 
-** $avg: average of values **
+** $avg: ** average of values
 
-Example:
 ```
 #!mongodb
 db.products.aggregate([
