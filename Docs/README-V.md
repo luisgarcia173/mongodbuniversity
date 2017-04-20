@@ -339,3 +339,47 @@ db.posts.aggregate([
 ```
 
 To revert the $unwind, you should use $push operator.
+
+** Double $unwind **
+
+Collection:
+```
+#!json
+{ "_id" : "123465987", "name" : "Chino Pants", "sizes": ["32x32", "31x30", "36x32"], colors: ["navy", "white", "orange", "violet"] }
+```
+
+Query:
+```
+#!mongodb
+db.inventory.aggregate([
+	{$unwind: "sizes"},
+	{$unwind: "colors"},
+	{$group:
+		{
+			_id: {size: "$sizes", color: "$colors"},
+			count: {$sum: 1}
+		}
+	}
+]);
+```
+
+** Mapping between SQL and Aggregation **
+
+[Mongo Reference](https://docs.mongodb.com/manual/reference/sql-aggregation-comparison/)
+
+SQL Terms, Functions, and Concepts	MongoDB Aggregation Operators
+WHERE.............$match
+GROUP BY..........$group
+HAVING............$match
+SELECT............$project
+ORDER BY..........$sort
+LIMIT.............$limit
+SUM().............$sum
+COUNT()...........$sum
+join..............$lookup
+
+** Limitations in Aggregation **
+
+* 100MB limit for pipeline stages (*allow Disk use*)
+* If you want to return the result in one document you only have 16 MB limit
+* In a sharded system, group/sort will take into account just the primary shard
