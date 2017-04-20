@@ -5,7 +5,7 @@
 Grouping with SQL
 ```
 #!sql
-SELECT manufactures, COUNT(*) FROM products GROUP BY manufactures;
+SELECT manufacturer, COUNT(*) FROM products GROUP BY manufactures;
 ```
 
 Grouping with MongoDB
@@ -14,7 +14,7 @@ Grouping with MongoDB
 db.products.aggregate([
 	{$group: 
 		{
-			_id: "$manufactures", 
+			_id: "$manufacturer", 
 			num_products: {$sum: 1}
 		}
 	}
@@ -47,7 +47,7 @@ db.products.aggregate([
 	{$group: 
 		{
 			_id: {
-				"maker": "$manufactures",
+				"maker": "$manufacturer",
 				"category": "$category"
 			}, 
 			num_products: {$sum: 1}
@@ -62,7 +62,7 @@ Example II:
 db.products.aggregate([
 	{$group: 
 		{
-			_id: {"$manufactures", "$category"}, 
+			_id: {"$manufacturer", "$category"}, 
 			num_products: {$sum: 1}
 		}
 	}
@@ -102,3 +102,240 @@ db.products.aggregate([
 	}
 ]);
 ```
+
+** $addToSet: ** create array to group values like SET in java, so you will not duplicity
+```
+#!mongodb
+db.products.aggregate([
+	{$group: 
+		{
+			_id: {"maker": "$manufacturer"}, 
+			categories: {$addToSet: "$category"}
+		}
+	}
+]);
+```
+
+** $push: ** create array to group values so you might have duplicity
+```
+#!mongodb
+db.products.aggregate([
+	{$group: 
+		{
+			_id: {"maker": "$manufacturer"}, 
+			categories: {$push: "$category"}
+		}
+	}
+]);
+```
+
+** $max and $min ** create array to group values so you might have duplicity
+```
+#!mongodb
+db.products.aggregate([
+	{$group: 
+		{
+			_id: {"maker": "$manufacturer"}, 
+			maxprice: {$max: "$price"}
+		}
+	}
+]);
+```
+
+** double $group stages ** allow you to use multiple group funcions
+```
+#!mongodb
+db.grades.aggregate([
+	{$group: {_id: {"class_id": "$class_id", "student_id": "$student_id"}, average: {$avg: "$score"}}},
+	{$group: {_id: "$_id.class_id", average: {$avg: "$average"}}}
+]);
+```
+
+** $project ** reshape the document:
+
+* remove keys
+* add new keys
+* reshape keys
+* use some simple functions on keys ($toUpper, $toLower, $add, $multiply, ...)
+
+Example:
+```
+#!mongodb
+db.products.aggregate([
+	{$project: 
+		{
+			_id: 0, //means you are removing the key _id
+			maker: {$toLower: "$manufacturer"},
+			details: {category: "$category", price: {$multiply: ["$price", 10]}},
+			item: "$name"
+		}
+	}
+]);
+```
+
+** $match ** filter for aggregation
+
+* filter n:1
+* pre aggregation filter
+* filter teh results
+
+Simple Example:
+```
+#!mongodb
+db.zips.aggregate([{$match:{pop:{$gt:100000}}}]);
+```
+
+Complex Example:
+```
+#!mongodb
+db.zips.aggregate([
+	{$match: {state: "CA"}},
+	{$group: 
+		{
+			_id: "$city", 
+			population: {$sum: "$pop"},
+			zip_codes: {$addToSet: "$_id"}
+		}
+	},
+	{$project: 
+		{
+			_id: 0,
+			city: "$_id",
+			population: 1,
+			zip_codes: 1
+		}
+	}
+]);
+```
+
+** $sort **
+
+* disk and memory based, 100MB
+* before or after the grouping stage
+
+Simple Example:
+```
+#!mongodb
+db.zips.aggregate([{$sort:{state:1, city:1}}]);
+```
+
+Complex Example:
+```
+#!mongodb
+db.zips.aggregate([
+	{$match: {state: "NY"}},
+	{$group: 
+		{
+			_id: "$city", 
+			population: {$sum: "$pop"}
+		}
+	},
+	{$project: 
+		{
+			_id: 0,
+			city: "$_id",
+			population: 1
+		}
+	},
+	{$sort: {population: -1}}
+]);
+```
+
+** $skip and $limit **
+
+Should use it together in the following order: $skip -> $limit
+
+Example:
+```
+#!mongodb
+db.zips.aggregate([
+	{$match: {state: "NY"}},
+	{$group: 
+		{
+			_id: "$city", 
+			population: {$sum: "$pop"}
+		}
+	},
+	{$project: 
+		{
+			_id: 0,
+			city: "$_id",
+			population: 1
+		}
+	},
+	{$sort: {population: -1}},
+	{$skip: 10},
+	{$limit: 5}
+]);
+```
+
+** $first and $last **
+
+```
+#!mongodb
+db.zips.aggregate([
+	/* get the population of every city in every state */
+	{$group:
+		{
+			_id: {state: "$state", city: "$city"},
+			population: {$sum: "$pop"}
+		}
+	},
+	/* sort by state, population*/
+	{$sort: {"_id.state": 1, "population": -1}},
+	/* group by state, get the first item in each group */
+	{$group:
+		{
+			_id: "_id.state",
+			city: {$first: "$_id.city"},
+			population: {$first: "$population"}
+		}
+	}
+]);
+```
+
+** $unwind **
+
+Split arrays in the documents:
+```
+#!json
+{ "_id" : "Will", "likes" : [ "physics", "MongoDB", "indexes" ] }
+```
+
+After *unwind*:
+```
+#!json
+{ "_id" : "Will", "likes" : "physics" }
+{ "_id" : "Will", "likes" : "MongoDB" }
+{ "_id" : "Will", "likes" :"indexes" }
+```
+
+Query example:
+```
+#!mongodb
+db.posts.aggregate([
+	/* unwind by tags */
+	{$unwind: "tags"},
+	/* now gropu by tags, counting each tag */
+	{$group:
+		{
+			_id: "$tags",
+			count: {$sum: 1}
+		}
+	},
+	/* sort by popularity*/
+	{$sort: {"count": -1}},
+	/* show me the top 10 */
+	{$limit: 10},
+	/* change the name of _id to be the tag*/
+	{$project:
+		{
+			_id: 0,
+			tag: "$_id",
+			count: 1
+		}
+	}
+]);
+```
+
+To revert the $unwind, you should use $push operator.
