@@ -316,7 +316,7 @@ Query example:
 db.posts.aggregate([
 	/* unwind by tags */
 	{$unwind: "tags"},
-	/* now gropu by tags, counting each tag */
+	/* now group by tags, counting each tag */
 	{$group:
 		{
 			_id: "$tags",
