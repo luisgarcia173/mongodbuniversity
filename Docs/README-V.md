@@ -383,3 +383,25 @@ join..............$lookup
 * 100MB limit for pipeline stages (*allow Disk use*)
 * If you want to return the result in one document you only have 16 MB limit
 * In a sharded system, group/sort will take into account just the primary shard
+
+** Homework **
+
+```
+#!mongodb
+/*4.1*/
+db.posts.aggregate([
+    {$group: 
+        {
+            _id: "$comments.author"
+        }
+    },
+    {$unwind: "$_id"},
+    {$group: 
+        {
+            _id: "$_id",
+            count: {$sum: 1}
+        }
+    },
+    {$sort: {count: -1}}
+]);
+```
