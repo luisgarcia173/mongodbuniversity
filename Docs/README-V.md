@@ -388,7 +388,7 @@ join..............$lookup
 
 ```
 #!mongodb
-/*4.1*/
+/*5.1*/
 db.posts.aggregate([
     {$group: 
         {
@@ -403,5 +403,71 @@ db.posts.aggregate([
         }
     },
     {$sort: {count: -1}}
+]);
+
+/* 5.4 */
+db.zips.aggregate([	
+{
+	"$project":	{
+		"first_char":{
+			"$substr":["$city",0,1]
+		},
+		"city":1,
+		"pop":1,
+		"state":1
+	}
+}, 
+{
+	"$match":{
+		"first_char":{
+			"$regex":"[BDOGNM]"
+		}
+	}
+},
+{
+	"$group":{
+		"_id":null,"sum":{
+			"$sum":"$pop"
+		}
+	}
+}
+]);
+
+/* 5.3 */
+db.grades.aggregate([{ 
+	$unwind: "$scores" 
+}, 
+{ 
+	$match: {
+		$or: [ {
+			"scores.type": "homework"
+		}, 
+		{
+			"scores.type":"exam"
+		}
+	]} 
+}, 
+{ 
+	$group: {
+		_id: {
+			'student_id': "$student_id", 'class_id': "$class_id" 
+		}, 
+		avg: {
+			$avg: "$scores.score" 
+		} 
+	} 
+}, 
+{ 
+	$group: { 
+		_id: "$_id.class_id", class_avg: {
+			$avg: "$avg" 
+		} 
+	} 
+}, 
+{ 
+	$sort: { 
+		'class_avg': -1 
+	} 
+}
 ]);
 ```
